@@ -1,0 +1,49 @@
+Tugas Mandiri 
+
+1. Buat table produk 
+	Create table produk (
+	id int auto_increment primary key,
+	kode varchar(10),
+	nama varchar(45),
+	harga_beli double,
+	harga_jual double,
+	stok int,
+	min_stok int,
+	jenis_produk_id int,
+	foreign key (jenis_produk_id) references jenis_produk(id)
+	);
+
+2. Buat table pesanan_items 
+	create table pesanan_items (
+	id int auto_increment primary key,
+	produk_id int,
+	pesanan_id int,
+	qty int,
+	harga double,
+	foreign key (produk_id) references produk(id),
+	foreign key (pesanan_id) references pesanan(id)
+	);
+	
+
+3. Buat table vendor 
+	create table vendor(
+	id int auto_increment primary key,
+	nomor varchar(4),
+	nama varchar(40),
+	kota varchar(30),
+	kontak varchar(30)
+	);
+
+
+4. Buat table Pembelian
+	create table pembelian(
+	id int auto_increment primary key,
+	tanggal date,
+	nomor varchar(10),
+	produk_id int,
+	jumlah int,
+	harga double,
+	vendor_id int,
+	foreign key (produk_id) references produk(id),
+	foreign key (vendor_id) references vendor(id)
+	);
