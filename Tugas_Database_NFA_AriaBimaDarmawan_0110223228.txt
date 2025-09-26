@@ -1,4 +1,5 @@
 Tugas Mandiri 
+Link GitHub: https://github.com/Ariabimad24/Tugas-NFA-Database
 
 1. Buat table produk 
 	Create table produk (

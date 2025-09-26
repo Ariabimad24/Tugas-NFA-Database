@@ -1,0 +1,54 @@
+Soal 2.3 - worksheet 2
+1. Tampilkan produk yang kode awalnya bukan huruf M 
+	select * from produk where kode like 'M%';
+
+2. Tampilkan produk-produk televisi 
+	select * from produk where nama_produk like '%televisi%';
+	
+3. Tampilkan pelanggan mengandung huruf 'SA' 
+	select * from pelanggan where nama_pelanggan like '%SA%';
+
+4. Tampilkan pelanggan yang lahirnya bukan di Jakarta dan mengandung huruf ‘yo‘ 
+	select * from pelanggan where kota_lahir <> 'Jakarta' and nama_pelanggan like '%yo%';
+	
+5. Tampilkan pelanggan yang karakter huruf ke – 2 nya adalah A
+	select * from pelanggan where nama_pelanggan like '_A%';
+	
+ 
+Soal 2.4 - worksheet 2
+1. Tampilkan produk yang paling murah 
+	select * from produk order by harga_produk asc limit 1;
+	
+2. Tampilkan produk yang stoknya paling banyak 
+	select * from produk order by stok desc limit 1;
+	
+3. Tampilkan dua produk yang stoknya paling sedikit 
+	select * from produk order by stok asc limit 2;
+	
+4. Tampilkan pelanggan yang paling muda 
+	select * from pelanggan order by umur_pelanggan asc limit 1;
+	
+5. Tampilkan pelanggan yang paling tua
+	select * from pelanggan order by umur_pelanggan desc limit 1;
+	
+
+Soal 3.3 - worksheet 3
+1. Tampilkan data produk: id, kode, nama, dan bonus untuk kode ‘TV01’ →’DVD Player’ , ‘K001’ → ‘Rice Cooker’ selain dari diatas ‘Tidak Ada’
+	select id,kode,nama
+	case
+	when kode = 'TVO1' then 'DVD Player'
+	when kode = 'K001' then 'Rice Cooker'
+	else 'Tidak Ada'
+	end as bonus
+	from produk;
+	
+
+Soal 3.4 - worksheet 3
+1. Tampilkan statistik data produk dimana harga produknya dibawah rata-rata harga produk secara keseluruhan
+	select id,nama,harga_jual from produk
+	where harga_jual < (select AVG(harga_jual) from produk);
+	
+2. Tampilkan data pelanggan yang memiliki kartu dimana diskon kartu yang diberikan diatas 3%
+	select p.id,p.nama,k.nama,k.iuran from pelanggan p
+	join kartu k on p.kartu_id = k.id
+	where k.diskon > 3;
