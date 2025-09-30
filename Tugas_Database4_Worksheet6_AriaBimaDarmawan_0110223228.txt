@@ -1,0 +1,60 @@
+Link GitHub: https://github.com/Ariabimad24/Tugas-NFA-Database
+Worksheet 6
+
+No 3
+delimeter $$
+
+create function kategori_harga(harga double)
+returns varchar(30)
+deterministic
+begin
+	declare kategori varchar(30);
+
+	if harga >= 0 and harga <= 500000 then
+		set kategori = 'Murah';
+	elseif harga > 500000 and harga <= 3000000 then
+		set kategori = 'Sedang';
+	elseif harga > 3000000 and harga <= 10000000 then
+		set kategori = 'Mahal';
+	else
+		set kategori = 'Sangat mahal';
+	end if;
+
+	return kategori;
+end $$
+
+delimeter ;
+
+
+===========================================================================
+
+
+Worksheet 7
+
+No 2
+delimeter $$
+
+create procedure kurangi_stok(
+	in p_produk_id int,
+	in p_jumlah int
+)
+begin
+	update produk set stok = stok - p_jumlah
+	where produk_id = p_produk_id;
+end $$
+
+delimeter ;
+
+
+
+No 3
+delimeter $$
+
+create trigger trig_kurangi_stok
+after insert on pesanan_items
+for each row
+begin
+	call kurangi_stok(new.produk_id,new.jumlah);
+end $$
+
+delimeter ;
