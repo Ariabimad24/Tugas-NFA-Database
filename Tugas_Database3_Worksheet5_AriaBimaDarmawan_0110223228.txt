@@ -1,0 +1,28 @@
+Link GitHub: https://github.com/Ariabimad24/Tugas-NFA-Database
+
+SOAL 5.1
+
+Nomor 2
+
+Create view pembelian_produk_vendor as
+select p.id, p.tanggal, p.nomor, p.jumlah, p.harga, pr.nama as nama_produk, v.nama as
+nama_vendor, v.kontak
+from pembelian p
+inner join produk pr on p.produk_id = pr.produk_id
+inner join vendor v on p.vendor_id = v.vendor_id;
+
+select * from pembelian_produk_vendor;
+
+
+Nomor 3
+
+Create view detail_pesanan as
+select p.id,p.tanggal,p.total,pl.nama as nama_pelanggan, pr.kode,pr.nama as nama_produk,
+jp.nama as jenis_produk, pi.qty as quantity, pi.harga_jual
+from pesanan p
+inner join pelanggan pl on p.pelanggan_id = pl.pelanggan_id
+inner join produk pr on p.produk_id = pr.produk_id
+inner join jenis_produk jp on p.jenis_produk_id = jp.jenis_produk_id
+inner join pesanan_items ps on p.pesanan_item_id = ps.pesanan_item_id;
+
+select * from detail_pesanan;
